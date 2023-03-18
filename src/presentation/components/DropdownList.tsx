@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 
+import useDynamicList from "@application/useDynamicList";
 import { assertIsNode } from "@application/utils/type-utils";
 import { ListItem } from "@domain/list.dto";
 
@@ -19,42 +20,17 @@ interface DropdownListProps {
 }
 
 const DropdownList: FC<DropdownListProps> = ({ name, options = [] }) => {
-  const [items, setItems] = useState(options);
-  const [showMenu, setShowMenu] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<ListItem | null>(null);
-  const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const closeHandler = ({ target }: Event): void => {
-      assertIsNode(target);
-      if (inputRef.current && !inputRef.current?.contains(target)) {
-        setShowMenu(false);
-      }
-    };
-
-    window.addEventListener("click", closeHandler);
-
-    return () => {
-      window.removeEventListener("click", closeHandler);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (selectedItem) setInputValue(selectedItem?.label);
-  }, [selectedItem]);
-
-  const toggleList = () => {
-    setShowMenu((prevState) => !prevState);
-  };
-
-  const isSelectedItem = useCallback(
-    (item: ListItem) => {
-      if (!selectedItem) return false;
-      return selectedItem?.value === item.value;
-    },
-    [selectedItem]
-  );
+  const [
+    items,
+    inputRef,
+    showMenu,
+    toggleList,
+    isSelectedItem,
+    inputValue,
+    setInputValue,
+    addItem,
+    setSelectedItem,
+  ] = useDynamicList(options);
 
   const addItemOnKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     const {
@@ -67,8 +43,7 @@ const DropdownList: FC<DropdownListProps> = ({ name, options = [] }) => {
         value: crypto.randomUUID(),
       };
 
-      setSelectedItem(newItem);
-      setItems((prevState) => [newItem, ...prevState]);
+      addItem(newItem);
     }
   };
 
