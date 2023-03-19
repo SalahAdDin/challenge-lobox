@@ -27,6 +27,8 @@ const useDynamicList = (options: ListItem[]): UseDynamicListOutput => {
     const closeHandler = ({ target }: Event): void => {
       assertIsNode(target);
       if (inputRef.current && !inputRef.current?.contains(target)) {
+        // TODO: It does not identifies span as contained by div.
+
         setShowMenu(false);
       }
     };

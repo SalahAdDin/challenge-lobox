@@ -10,6 +10,10 @@ import styles from "./DropdownList.css";
 interface DropdownListProps {
   name: string;
   options?: ListItem[];
+  /** TODO:
+   * Without a static width, the input element width will not match the list width,
+   * this is a monkey patch
+   * */
   style?: CSSProperties | undefined;
 }
 
