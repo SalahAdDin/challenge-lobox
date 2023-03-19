@@ -1,20 +1,16 @@
-// import { Outlet } from "@tanstack/react-router";
+import mockService from "@application/utils/mock";
+
+import styles from "./App.css";
+import DropdownList from "./components/DropdownList/DropdownList";
+import "./global.css";
+import "./themes.css";
+
+const defaultOptions = mockService.generateMockedList();
 
 const App = () => (
-  <div className="container my-8 max-w-screen-lg">
-    {/*
-    // TODO: use this code as base of Layout component or similar.
-    <Suspense
-      fallback={
-        <div className="flex h-[75vh] w-full flex-col items-center justify-center">
-          <Spinner />
-        </div>
-      }
-    >
-      <Outlet />
-    </Suspense>
-    */}
-  </div>
+  <main className={styles.mainStyle}>
+    <DropdownList options={defaultOptions} name="test" style={{ width: 450 }} />
+  </main>
 );
 
 export default App;

@@ -1,7 +1,6 @@
 import { render, screen } from "@application/utils/test-utils";
+
 import DropdownList from "./DropdownList";
-
-
 
 const DUMMY_ERROR = "Connection Error with 400 code.";
 

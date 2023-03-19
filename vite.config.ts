@@ -3,6 +3,7 @@ import { loadEnv } from "vite";
 import type { ConfigEnv } from "vite";
 import { defineConfig } from "vitest/config";
 
+import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
@@ -14,7 +15,7 @@ export default (configEnv: ConfigEnv) => {
 
   return defineConfig({
     base: process.env.VITE_APP_BASE_URL,
-    plugins: [react()],
+    plugins: [react(), vanillaExtractPlugin()],
     css: {
       devSourcemap: true,
     },
