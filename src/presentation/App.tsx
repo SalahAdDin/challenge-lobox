@@ -1,13 +1,16 @@
 import mockService from "@application/utils/mock";
 
-import DropdownList from "./components/DropdownList";
+import styles from "./App.css";
+import DropdownList from "./components/DropdownList/DropdownList";
+import "./global.css";
+import "./themes.css";
 
 const defaultOptions = mockService.generateMockedList();
 
 const App = () => (
-  <div>
-    <DropdownList options={defaultOptions} name="test" />
-  </div>
+  <main className={styles.mainStyle}>
+    <DropdownList options={defaultOptions} name="test" style={{ width: 450 }} />
+  </main>
 );
 
 export default App;
