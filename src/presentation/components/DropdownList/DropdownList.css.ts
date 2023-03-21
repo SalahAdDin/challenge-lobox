@@ -26,6 +26,7 @@ const dropdownInput = style({
 });
 
 const dropdownDownArrowContainer = style({
+  pointerEvents: "none",
   selectors: {
     [`${dropdownInputContainer} &`]: {
       background: tokens.colors.background.white,

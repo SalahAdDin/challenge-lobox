@@ -1,5 +1,5 @@
-function assertIsNode(e: EventTarget | null): asserts e is Node {
-  if (!e || !("nodeType" in e)) {
+function assertIsNode(event: EventTarget | null): asserts event is Node {
+  if (!event || !("nodeType" in event)) {
     throw new Error(`Node expected`);
   }
 }
